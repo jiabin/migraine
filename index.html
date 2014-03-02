@@ -31,25 +31,64 @@
         <h1>
 <a name="migraine" class="anchor" href="#migraine"><span class="octicon octicon-link"></span></a>Migraine</h1>
 
-<p>Yet another tool for migrations.</p>
+<p>Yet another tool for managing migrations.</p>
 
-<h1>
-<a name="install" class="anchor" href="#install"><span class="octicon octicon-link"></span></a>Install</h1>
+<h2>
+<a name="install" class="anchor" href="#install"><span class="octicon octicon-link"></span></a>Install</h2>
+
+<pre><code>curl -sS http://jiabin.github.io/migraine/installer | /bin/bash
+</code></pre>
+
+<h2>
+<a name="quick-start" class="anchor" href="#quick-start"><span class="octicon octicon-link"></span></a>Quick start</h2>
+
+<p><strong>Show all available commands</strong></p>
+
+<pre><code>php migraine.phar
+</code></pre>
+
+<p><strong>Migrate to the latest version</strong></p>
+
+<pre><code>php migraine.phar migrate
+</code></pre>
+
+<p><strong>Create a new migration</strong></p>
+
+<pre><code>php migraine.phar create
+</code></pre>
+
+<p><strong>Print version and exit</strong></p>
+
+<pre><code>php migraine.phar -V
+</code></pre>
+
+<h2>
+<a name="reporting-an-issue-or-a-feature-request" class="anchor" href="#reporting-an-issue-or-a-feature-request"><span class="octicon octicon-link"></span></a>Reporting an issue or a feature request</h2>
+
+<p>Issues and feature requests are tracked in the <a href="https://github.com/jiabin/migraine/issues">Github issue tracker</a>.</p>
+
+<h2>
+<a name="build" class="anchor" href="#build"><span class="octicon octicon-link"></span></a>Build</h2>
+
+<p>First you need to install composer dependencies:</p>
 
 <pre><code>composer install
 </code></pre>
 
-<h1>
-<a name="launch" class="anchor" href="#launch"><span class="octicon octicon-link"></span></a>Launch</h1>
+<p>Now you can run migraine by:</p>
 
 <pre><code>./bin/migraine
 </code></pre>
 
-<h1>
-<a name="build" class="anchor" href="#build"><span class="octicon octicon-link"></span></a>Build</h1>
+<p>To build a phar file you will need <a href="http://box-project.org">box</a> </p>
 
-<p>Install the <a href="http://box-project.org/">box</a> tool, then run <code>box build</code> to build
-a PHAR file. Then you can launch the app: <code>./migraine.phar</code>.</p>
+<pre><code>box build
+</code></pre>
+
+<p>Then you can launch the app by: </p>
+
+<pre><code>./migraine.phar
+</code></pre>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/jiabin">jiabin</a></p>
