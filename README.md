@@ -2,33 +2,62 @@
 
 Yet another tool for managing migrations.
 
-# Install
+## Install
 
-    curl -sS http://jiabin.github.io/migraine/installer | /bin/bash
+```
+curl -sS http://jiabin.github.io/migraine/installer | /bin/bash
+```
+## Quick start
 
-# Launch
+**Show all available commands**
 
-    php migraine.phar
+```
+php migraine.phar
+```
 
-# Build
+**Migrate to the latest version**
 
-You will need:
-* [box](http://box-project.org) 
-* [jsawk](https://github.com/micha/jsawk) 
+```
+php migraine.phar migrate
+```
 
-First you need to install composer packages:
+**Create a new migration**
+
+```
+php migraine.phar create
+```
+
+**Print version and exit**
+
+```
+php migraine.phar -V
+```
+
+## Reporting an issue or a feature request
+
+Issues and feature requests are tracked in the [Github issue tracker](https://github.com/jiabin/migraine/issues).
+
+## Build
+
+First you need to install composer dependencies:
 
 ```
 composer install
 ```
 
-Once you have installed all required dependencies run:
+Now you can run migraine by:
+
+```
+./bin/migraine
+``` 
+
+To build a phar file you will need [box](http://box-project.org) 
 
 ```
 box build
 ```
 
-to build a phar file. Then you can launch the app by: 
+Then you can launch the app by: 
 
 ```
 ./migraine.phar
