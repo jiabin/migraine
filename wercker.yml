@@ -1,0 +1,17 @@
+box: eymengunay/php55@0.0.10
+build:
+    steps:
+        - wercker/add-ssh-key@0.0.3:
+            keyname: SSH
+        - wercker/add-to-known_hosts@1.2.0:
+            hostname: github.com
+            fingerprint: 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
+        - script:
+            name: install dependencies
+            code: |-
+                if [ $GITHUB_OAUTH_TOKEN ]; then COMPOSER_METHOD='--prefer-dist'; else COMPOSER_METHOD='--prefer-source'; fi
+                if [ $GITHUB_OAUTH_TOKEN ]; then composer config --global github-oauth.github.com $GITHUB_OAUTH_TOKEN; fi
+                composer install $COMPOSER_METHOD --no-interaction
+        - script:
+            name: bump version
+            code: ./bump-version.sh
