@@ -1,6 +1,14 @@
-[{
-    "name": "migraine.phar",
-    "sha1": "eec703f46e9919287ada67c6fb584ee718ee0f00",
-    "url": "http://jiabin.github.io/migraine/downloads/migraine-0.0.1.phar",
-    "version": "0.0.1"
-}]
+[
+    {
+        "name": "migraine.phar",
+        "sha1": "eec703f46e9919287ada67c6fb584ee718ee0f00",
+        "url": "http://jiabin.github.io/migraine/downloads/migraine-0.0.1.phar",
+        "version": "0.0.1"
+    },
+    {
+        "name": "migraine.phar",
+        "sha1": "1baac8ffd36fd52ec8ab9f1fb9bf038ff96e63e6",
+        "url": "http://jiabin.github.io/migraine/downloads/migraine-0.0.2.phar",
+        "version": "0.0.2"
+    }
+]
