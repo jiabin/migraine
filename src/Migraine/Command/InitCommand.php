@@ -5,6 +5,7 @@ namespace Migraine\Command;
 use Migraine\Lock;
 use Migraine\Config;
 use Migraine\Migration;
+use Migraine\Exception\MigraineException as Exception;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
@@ -17,13 +18,14 @@ class InitCommand extends Command
         $this
             ->setName('init')
             ->setDescription('Creates a basic migraine.json file in current directory.')
+            ->addOption('type', null, InputOption::VALUE_REQUIRED, 'Migraine type to use in configuration', 'default')
             ->addOption('force', null, InputOption::VALUE_NONE, 'Overwrite existing configuration file')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $val = $this->getSkeleton();
+        $val = $this->getSkeleton($input->getOption('type'));
 
         $file = getcwd().'/migraine.json';
 
@@ -32,14 +34,30 @@ class InitCommand extends Command
         }
 
         file_put_contents($file, $val);
+
+        $dir = dirname($file).'/migrations';
+        if (!file_exists($dir)) {
+            mkdir($dir);
+        }
         $output->writeln("<info>File migraine.json created</info>");
     }
 
-    private function getSkeleton()
+    private function getSkeleton($type)
     {
-        return '{
-    "type": "default",
-    "location": "migrations"
-}';
+        switch ($type) {
+            case 'default':
+            case 'symfony':
+                $skeleton = array(
+                    'type' => $type
+                );
+                break;
+            default:
+                throw new Exception("Unknown type given: $type");
+                break;
+        }
+
+        $skeleton['location'] = 'migrations';
+
+        return json_encode($skeleton, JSON_PRETTY_PRINT);
     }
 }
