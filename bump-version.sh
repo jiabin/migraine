@@ -30,7 +30,7 @@ git add downloads/migraine.phar
 git show master:installer.sh > installer
 git add installer
 
-SHA1=$(openssl sha1 migraine.phar)
+SHA1=$(openssl sha1 migraine.phar | egrep -o '[0-9a-f]{40}\b')
 
 JSON='name:"migraine.phar"'
 JSON="${JSON},sha1:\"${SHA1}\""
