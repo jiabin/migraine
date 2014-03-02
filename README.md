@@ -12,5 +12,9 @@ Yet another tool for migrations.
 
 # Build
 
-Install the [box](http://box-project.org/) tool, then run `box build` to build
+You will need:
+* [box](http://box-project.org) 
+* [jsawk](https://github.com/micha/jsawk) 
+
+Once you have installed all required dependencies run `box build` to build
 a PHAR file. Then you can launch the app: `./migraine.phar`.
