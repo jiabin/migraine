@@ -2,6 +2,12 @@
 
 Yet another tool for managing migrations.
 
+## Requirements
+
+Migraine requires PHP 5.4+ 
+
+<small>Although some commands rely on features introduced with PHP 5.4, it will mostly work fine on PHP 5.3 too.</small>
+
 ## Install
 
 ```
