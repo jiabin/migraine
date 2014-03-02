@@ -2,18 +2,18 @@
 
 set -e
 
-if [ $# -ne 1 ]; then
-  echo "Usage: `basename $0` <tag>"
-  exit 65
-fi
-
-TAG=$1
-
 #
 # Tag & build master branch
 #
 git checkout master
-git tag ${TAG}
+
+if [ $# -ne 1 ]; then
+  TAG=$(git describe --abbrev=0 --tags)
+else
+  TAG=$1
+  git tag ${TAG}
+fi
+
 box build
 
 #
