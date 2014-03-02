@@ -25,6 +25,12 @@ abstract class Type implements TypeInterface
         $resolver = new OptionsResolver();
         $this->setDefaultOptions($resolver);
         $this->options = $resolver->resolve($config->options);
+
+        $this->init();
+    }
+
+    protected function init()
+    {
     }
 
     protected function setDefaultOptions(OptionsResolverInterface $resolver)
