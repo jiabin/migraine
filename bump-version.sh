@@ -8,6 +8,7 @@ set -e
 git checkout master
 
 if [ $# -ne 1 ]; then
+  git fetch --tags
   TAG=$(git describe --abbrev=0 --tags)
 else
   TAG=$1
