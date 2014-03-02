@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "20f032c10588ec16aac0cd4e6d0242a6",
+    "hash": "49cb2f301d8528f4efafd8172d1e57fe",
     "packages": [
         {
             "name": "herrera-io/json",

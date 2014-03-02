@@ -1,6 +1,6 @@
 {
     "name": "jiabin/migraine",
-    "description": "Yet another tool for PHP migrations",
+    "description": "Yet another tool for migrations",
     "license": "MIT",
     "require": {
         "symfony/console": "~2.3",
