@@ -1,6 +1,6 @@
-# Cliph
+# Migraine
 
-Example of CLI app in PHP
+Yet another tool for migrations.
 
 # Install
 
@@ -8,9 +8,9 @@ Example of CLI app in PHP
 
 # Launch
 
-    ./bin/cliph
+    ./bin/migraine
 
 # Build
 
 Install the [box](http://box-project.org/) tool, then run `box build` to build
-a PHAR file. Then you can launch the app: `./cliph.phar`.
+a PHAR file. Then you can launch the app: `./migraine.phar`.
