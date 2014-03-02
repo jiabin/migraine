@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -e
+
+curl -s -o migraine.phar http://jiabin.github.io/migraine/downloads/migraine.phar
+chmod +x migraine.phar
+echo "Installed successfully!"
+./migraine.phar -V

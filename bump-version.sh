@@ -27,6 +27,9 @@ git add downloads/migraine-${TAG}.phar
 cp migraine.phar downloads/migraine.phar
 git add downloads/migraine.phar
 
+cp installer.sh installer
+git add installer
+
 SHA1=$(openssl sha1 migraine.phar)
 
 JSON='name:"migraine.phar"'
