@@ -24,6 +24,9 @@ git checkout gh-pages
 cp migraine.phar downloads/migraine-${TAG}.phar
 git add downloads/migraine-${TAG}.phar
 
+cp migraine.phar downloads/migraine.phar
+git add downloads/migraine.phar
+
 SHA1=$(openssl sha1 migraine.phar)
 
 JSON='name:"migraine.phar"'
