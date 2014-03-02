@@ -6,8 +6,13 @@ class M20200302T200644 extends Migration
 {
     public function up()
     {
-        $output = $this->getOutput();
-        $output->writeln('Hello World!');
+        $this->getOutput()->writeln('Starting sample migration...');
+
+        // Access symfony container
+        $symfony   = $this->getType();
+        $container = $symfony->getContainer();
+        
+        $this->getOutput()->writeln('You are using Symfony ' . $symfony->getSymfonyVersion());
     }
 
     public function down()
