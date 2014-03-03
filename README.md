@@ -1,4 +1,5 @@
-# Migraine
+![Mind Blowing by Luis Prado from The Noun Project](doc/logo.png) Migraine
+==========================================================================
 
 Yet another tool for managing migrations.
 
@@ -43,7 +44,7 @@ php migraine.phar -V
 
 Issues and feature requests are tracked in the [Github issue tracker](https://github.com/jiabin/migraine/issues).
 
-## Build
+## Contributing
 
 First you need to install composer dependencies:
 
