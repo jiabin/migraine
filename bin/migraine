@@ -7,8 +7,4 @@ use Migraine\Command;
 use Migraine\Migraine;
 
 $application = new Migraine('Migraine', '@package_version@');
-$application->add(new Command\SelfUpdateCommand());
-$application->add(new Command\MigrateCommand());
-$application->add(new Command\CreateCommand());
-$application->add(new Command\InitCommand());
 $application->run();
