@@ -41,19 +41,13 @@ class CreateCommand extends FactoryAwareCommand
         if (is_null($input->getArgument('name'))) {
             $dialog = $this->getHelperSet()->get('dialog');
 
-            $name = $dialog->askAndValidate(
-                $output,
-                'Migration name: ',
-                function ($answer) {
-                    if (is_null($answer)) {
-                        throw new Exception('You must give a name to this migration');
-                    }
-                    
-                    return $answer;
-                },
-                3,
-                null
-            );
+            $name = $dialog->askAndValidate($output, 'Migration name: ', function ($answer) {
+                if (is_null($answer)) {
+                    throw new Exception('You must give a name to this migration');
+                }
+                
+                return $answer;
+            }, 3, null);
             $input->setArgument('name', $name);
         }
     }
