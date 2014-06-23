@@ -84,5 +84,9 @@ class StatusCommand extends FactoryAwareCommand
         if ($lastUpdatedAt) {
             $output->writeln(sprintf('* Last update was at %s', $lastUpdatedAt->format('c')));
         }
+
+        if ($awaiting) {
+            return 1;
+        }
     }
 }
