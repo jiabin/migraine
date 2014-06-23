@@ -2,7 +2,8 @@
 
 set -e
 
-curl -sS -O http://jiabin.github.io/migraine/downloads/migraine.phar
-chmod +x migraine.phar
+curl -sS -O http://jiabin.github.io/migraine/downloads/migraine-latest.phar
+chmod +x migraine-latest.phar
+mv migraine-latest.phar migraine.phar
 ./migraine.phar -V
 echo "Installed successfully!"
