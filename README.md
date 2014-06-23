@@ -67,6 +67,15 @@ migrations_path:      ./migrations
 # Number of "zeros" to append to version
 pad_length:           3
 
+# Application bridge
+bridge:
+
+    # One of "composer"; "symfony"
+    name:                 composer # Required
+
+    # Bridge options
+    options:              []
+
 # Type configuration
 types:
     file:
