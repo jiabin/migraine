@@ -68,10 +68,6 @@ class Factory
 
         // Initialize types
         foreach ($this->configuration->get('types') as $key => $val) {
-            if ($val['enabled'] === false) {
-                continue;
-            }
-
             $class  = sprintf('Migraine\Type\%sType', ucfirst($key));
             $type = new $class($val);
             $type->initialize();
