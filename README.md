@@ -60,8 +60,24 @@ php migraine.phar -V
 
 ## Supported bridges
 
-* composer
-* symfony
+### 1) Composer
+
+#### Configuration reference
+
+| option            | default                                       |
+|----------------   |---------------------------------------------- |
+| autoload          | vendor/autoload.php                           |
+
+### 2) Symfony
+
+#### Configuration reference
+
+| option            | default                                       |
+|----------------   |---------------------------------------------- |
+| bootstrap         | app/bootstrap.php.cache                       |
+| kernel            | app/AppKernel.php                             |
+| env               | dev                                           |
+| debug             | false                                         |
 
 ## Sample configuration (migraine.yml)
 
@@ -79,21 +95,19 @@ bridge:
     name:                 composer # Required
 
     # Bridge options
-    options:              []
+    options:
+        autoload: vendor/autoload.php
 
 # Type configuration
 types:
     file:
-        enabled:              true
         lock_file:            migraine.lock
-    redis:
-        enabled:              false
-        host:                 'tcp://localhost:6379'
-        prefix:               null
-    mongo:
-        enabled:              false
-        server:               'mongodb://localhost:27017'
-        database:             migraine
+    # redis:
+    #     host:                 'tcp://localhost:6379'
+    #     prefix:               null
+    # mongo:
+    #     server:               'mongodb://localhost:27017'
+    #     database:             migraine
 ```
 
 ## Reporting an issue or a feature request

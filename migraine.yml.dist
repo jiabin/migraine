@@ -4,16 +4,16 @@ migrations_path:      ./migrations
 # Number of "zeros" to append to version
 pad_length:           3
 
+bridge:
+    name: symfony
+    options:
+        env: dev
+        debug: false
+
 # Type configuration
 types:
     file:
-        enabled:              true
         lock_file:            migraine.lock
-    redis:
-        enabled:              false
-        host:                 'tcp://localhost:6379'
-        prefix:               null
     mongo:
-        enabled:              false
-        server:               'mongodb://localhost:27017'
-        database:             migraine
+        server:   %bridge.mongodb_host%
+        database: julius:piccoloteatro
