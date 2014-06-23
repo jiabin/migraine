@@ -38,10 +38,6 @@ class BridgeAwareCommand extends ConfigurationAwareCommand
 
             // Bridge parameters override
             foreach ($types as $name => $type) {
-                if ($type['enabled'] === false) {
-                    continue;
-                }
-                unset($type['enabled']);
                 foreach ($type as $key => $val) {
                     preg_match('/%bridge\.(.*)%/i', $val, $match);
                     if ($match) {
