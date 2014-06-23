@@ -1,4 +1,4 @@
-![Mind Blowing by Luis Prado from The Noun Project](doc/logo.png) Migraine
+![Mind Blowing by Luis Prado from The Noun Project](http://jiabin.github.io/migraine/logo.png) Migraine
 ==========================================================================
 
 Migraine is a PHP-based command-line utility for simplifying the process of creating/executing migrations.
