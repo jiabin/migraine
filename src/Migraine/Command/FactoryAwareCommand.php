@@ -30,9 +30,9 @@ class FactoryAwareCommand extends BridgeAwareCommand
      */
     public function initialize(InputInterface $input, OutputInterface $output)
     {
-        $this->factory = new Factory($this->getConfiguration());
+        parent::initialize($input, $output);
 
-        return parent::initialize($input, $output);
+        $this->factory = new Factory($this->getConfiguration());
     }
 
     /**
