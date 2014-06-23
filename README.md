@@ -58,6 +58,11 @@ php migraine.phar -V
 * mongo
 * redis
 
+## Supported bridges
+
+* composer
+* symfony
+
 ## Sample configuration (migraine.yml)
 
 ```
