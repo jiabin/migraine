@@ -1,41 +1,58 @@
 <?php
 
+/*
+ * This file is part of the Migraine package.
+ *
+ * (c) Jiabin <dev@jiabin.net>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Migraine\Command;
 
-use Migraine\Lock;
 use Migraine\Config;
 use Migraine\Migration;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class MigrateCommand extends ConfigAwareCommand
+/**
+ * Migrate command
+ */
+class MigrateCommand extends FactoryAwareCommand
 {
+    /**
+     * {@inheritdoc}
+     */
     protected function configure()
     {
         $this
             ->setName('migrate')
-            ->setDescription('Migrates application')
+            ->setDescription('Execute migrations')
         ;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $lock = $this->getLock();
-
-        while (!is_null($migration = $this->getLocation()->getNextMigration($lock))) {
-            $this->setDependencies($migration, $input, $output);
-            $migration->up();
-            $lock->write($migration->getCreatedAt());
-            $output->writeln('<info>Migrated to ' . $migration->getName() . '</info>');
+        if ($this->getFactory()->hasNextMigration() === false) {
+            return $output->writeln('<comment>No new migrations found. Application is already up to date!</comment>');
         }
-    }
 
-    private function setDependencies(Migration $migration, InputInterface $input, OutputInterface $output)
-    {
-        $migration
-            ->setInput($input)
-            ->setOutput($output)
-            ->setType($this->getType())
-        ;
+        while (true) {
+            $migration = $this->getFactory()->getNextMigration();
+            if (is_null($migration)) {
+                break;
+            }
+            $migration->setBridge($this->getBridge());
+
+            if ($this->getFactory()->execute($migration) !== true) {
+                return $output->writeln(sprintf('<error> An error occured while executing migration #%s "%s" </error>', $migration->getVersion(), $migration->getName()));
+            }
+
+            $output->writeln(sprintf('<info>Migrated to #%s "%s"</info>', $migration->getVersion(), $migration->getName()));
+        }
     }
 }

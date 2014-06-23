@@ -3,8 +3,8 @@
 /*
  * This file is part of the Migraine package.
  *
- * (c) 2014 Jiabin <dev@jiabin.net>
- * 
+ * (c) Jiabin <dev@jiabin.net>
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -24,6 +24,7 @@ use Symfony\Component\Yaml\Yaml;
 class Configuration implements ConfigurationInterface
 {
     const NAME = 'migraine.yml';
+    const DIST_SUFFIX = '.dist';
 
     /**
      * Class constructor
@@ -32,11 +33,28 @@ class Configuration implements ConfigurationInterface
      */
     public function __construct(array $config = array())
     {
-        $config    = file_exists(Configuration::NAME) ? Yaml::parse(Configuration::NAME) : array();
+        $configs   = array();
+        $configs[] = file_exists(self::NAME.self::DIST_SUFFIX) ? Yaml::parse(self::NAME.self::DIST_SUFFIX) : array();
+        $configs[] = file_exists(self::NAME) ? Yaml::parse(self::NAME) : array();
+
         $processor = new Processor();
-        $processed = $processor->processConfiguration($this, array($config));
+        $processed = $processor->processConfiguration($this, $configs);
 
         $this->configuration = new ArrayCollection($processed);
+    }
+
+    /**
+     * Set configuration
+     * 
+     * @param  string $key
+     * @param  mixed  $val
+     * @return self
+     */
+    public function set($key, $val)
+    {
+        $this->configuration->set($key, $val);
+
+        return $this;
     }
 
     /**
@@ -78,6 +96,8 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('migraine');
 
+        $bridges = array('composer', 'symfony');
+
         $rootNode
             ->children()
                 ->scalarNode('migrations_path')
@@ -88,8 +108,22 @@ class Configuration implements ConfigurationInterface
                     ->info('Number of "zeros" to append to version')
                     ->defaultValue(3)
                 ->end()
-                ->arrayNode('drivers')
-                    ->info('Driver configuration')
+                ->arrayNode('bridge')
+                    ->info('Application bridge')
+                    ->children()
+                        ->scalarNode('name')
+                            ->defaultValue('composer')
+                            ->isRequired()
+                            ->info('One of "' . implode('"; "', $bridges) . '"')
+                        ->end()
+                        ->arrayNode('options')
+                            ->info('Bridge options')
+                            ->prototype('scalar')->end()
+                        ->end()
+                    ->end()
+                ->end()
+                ->arrayNode('types')
+                    ->info('Type configuration')
                     ->children()
                         ->arrayNode('file')
                             ->canBeDisabled()

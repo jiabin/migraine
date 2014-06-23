@@ -3,8 +3,13 @@
 
 require __DIR__.'/../vendor/autoload.php';
 
-use Migraine\Command;
-use Migraine\Migraine;
+use Migraine\Application;
+use Symfony\Component\Console\Input\ArgvInput;
 
-$application = new Migraine('Migraine', '@package_version@');
-$application->run();
+$input = new ArgvInput();
+if ($cwd = $input->getParameterOption('--cwd')) {
+    chdir($cwd);
+}
+
+$application = new Application('Migraine', '@package_version@');
+$application->run($input);

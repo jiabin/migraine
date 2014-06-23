@@ -3,8 +3,8 @@
 /*
  * This file is part of the Migraine package.
  *
- * (c) 2014 Jiabin <dev@jiabin.net>
- * 
+ * (c) Jiabin <dev@jiabin.net>
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */

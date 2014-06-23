@@ -1,0 +1,28 @@
+# Migrations will be stored and read from this path
+migrations_path:      ./migrations
+
+# Number of "zeros" to append to version
+pad_length:           3
+
+# Application bridge
+bridge:
+
+    # One of "composer"; "symfony"
+    name:                 composer # Required
+
+    # Bridge options
+    options:              []
+
+# Type configuration
+types:
+    file:
+        enabled:              true
+        lock_file:            migraine.lock
+    redis:
+        enabled:              false
+        host:                 'tcp://localhost:6379'
+        prefix:               null
+    mongo:
+        enabled:              false
+        server:               'mongodb://localhost:27017'
+        database:             migraine

@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Migraine package.
+ *
+ * (c) Jiabin <dev@jiabin.net>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Migraine\Command;
 
 use Herrera\Phar\Update\Manager;
@@ -10,10 +19,16 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Self update command
+ */
 class SelfUpdateCommand extends Command
 {
     const MANIFEST_FILE = 'http://jiabin.github.io/migraine/manifest.json';
 
+    /**
+     * {@inheritdoc}
+     */
     protected function configure()
     {
         $this
@@ -24,6 +39,9 @@ class SelfUpdateCommand extends Command
         ;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $output->writeln('Looking for updates...');
@@ -31,9 +49,7 @@ class SelfUpdateCommand extends Command
         try {
             $manager = new Manager(Manifest::loadFile(self::MANIFEST_FILE));
         } catch (FileException $e) {
-            $output->writeln('<error>Unable to search for updates</error>');
-
-            return 1;
+            return $output->writeln('<error>Unable to search for updates</error>');
         }
 
         $currentVersion = $this->getApplication()->getVersion();

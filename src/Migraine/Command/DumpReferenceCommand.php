@@ -11,16 +11,14 @@
 
 namespace Migraine\Command;
 
-use Migraine\Configuration;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Config\Definition\Dumper\YamlReferenceDumper;
 
 /**
- * Init command
+ * Dump reference command
  */
-class InitCommand extends ConfigurationAwareCommand
+class DumpReferenceCommand extends ConfigurationAwareCommand
 {
     /**
      * {@inheritdoc}
@@ -28,9 +26,8 @@ class InitCommand extends ConfigurationAwareCommand
     protected function configure()
     {
         $this
-            ->setName('init')
-            ->setDescription('Creates a new configuration file')
-            ->addOption('force', null, InputOption::VALUE_NONE, 'Overwrite existing configuration file')
+            ->setName('dump-reference')
+            ->setDescription('Dumps the default configuration for Migraine')
         ;
     }
 
@@ -39,21 +36,13 @@ class InitCommand extends ConfigurationAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if (file_exists(Configuration::NAME) && $input->getOption('force') === false) {
-            $output->writeln('<error>Configuration file already exists.</error>');
-            $output->writeln('<comment>To overwrite it use `--force` option.</comment>');
-
-            return;
-        }
-
-        $contents = '';
+        $output->writeln('<info># Default configuration for "Migraine"</info>');
         $dumper = new YamlReferenceDumper();
+        $contents = '';
         $node = $this->getConfiguration()->getConfigTreeBuilder()->buildTree();
         foreach ($node->getChildren() as $childNode) {
             $contents .= $dumper->dumpNode($childNode);
         }
-        file_put_contents(Configuration::NAME, trim($contents));
-
-        $output->writeln('<info>Configuration file created successfully!</info>');
+        $output->writeln($contents);
     }
 }

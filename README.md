@@ -1,13 +1,11 @@
 ![Mind Blowing by Luis Prado from The Noun Project](doc/logo.png) Migraine
 ==========================================================================
 
-Yet another tool for managing migrations.
+Migraine is a PHP-based command-line utility for simplifying the process of creating/executing migrations.
 
 ## Requirements
 
-Migraine requires PHP 5.4+ 
-
-<small>Although some commands rely on features introduced with PHP 5.4, it will mostly work fine on PHP 5.3 too.</small>
+The only requirement for Migraine is PHP 5.4+
 
 ## Install
 
@@ -38,6 +36,50 @@ php migraine.phar create
 
 ```
 php migraine.phar -V
+```
+
+## Commands reference
+
+| command           | description                                   |
+|----------------   |---------------------------------------------- |
+| create            | Creates a new migration                       |
+| dump-reference    | Dumps the default configuration for Migraine  |
+| help              | Displays help for a command                   |
+| init              | Creates a new configuration file              |
+| list              | Lists commands                                |
+| migrate           | Execute migrations                            |
+| reset             | Reset migraine                                |
+| self-update       | Updates migraine.phar to the latest version   |
+| status            | Shows migration status                        |
+
+## Supported types
+
+* file
+* mongo
+* redis
+
+## Sample configuration (migraine.yml)
+
+```
+# Migrations will be stored and read from this path
+migrations_path:      ./migrations
+
+# Number of "zeros" to append to version
+pad_length:           3
+
+# Type configuration
+types:
+    file:
+        enabled:              true
+        lock_file:            migraine.lock
+    redis:
+        enabled:              false
+        host:                 'tcp://localhost:6379'
+        prefix:               null
+    mongo:
+        enabled:              false
+        server:               'mongodb://localhost:27017'
+        database:             migraine
 ```
 
 ## Reporting an issue or a feature request

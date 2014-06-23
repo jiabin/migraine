@@ -1,0 +1,44 @@
+<?php
+
+use Migraine\Migration;
+
+/**
+ * Migration #%version% %name%
+ * Created at %date% by %user%
+ */
+class %class% extends Migration
+{
+    /**
+     * @see Migraine\Migration::up()
+     */
+    public function up()
+    {
+        // Execute your migration logic here
+        return true;
+    }
+
+    /**
+     * @see Migraine\Migration::getName()
+     */
+    public function getName()
+    {
+        return '%name%';
+    }
+
+    /**
+     * @see Migraine\Migration::getType()
+     */
+    public function getType()
+    {
+        // Can be one of: file, mongo, redis
+        return 'file';
+    }
+
+    /**
+     * @see Migraine\Migration::getVersion()
+     */
+    public function getVersion()
+    {
+        return %version%;
+    }
+}

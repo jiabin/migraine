@@ -1,62 +1,76 @@
 <?php
 
+/*
+ * This file is part of the Migraine package.
+ *
+ * (c) Jiabin <dev@jiabin.net>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Migraine;
 
-use Migraine\Type\Type;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use Migraine\Bridge\BridgeInterface;
 
+/**
+ * Migration
+ */
 abstract class Migration
 {
+    /**
+     * Migrate up
+     *
+     * @return boolean
+     */
     abstract public function up();
 
-    abstract public function down();
+    /**
+     * Get type
+     * 
+     * @return string
+     */
+    abstract public function getType();
 
-    public function setInput(InputInterface $input)
-    {
-        $this->input = $input;
+    /**
+     * Get version
+     * 
+     * @return integer
+     */
+    abstract public function getVersion();
 
-        return $this;
-    }
-
-    public function getInput()
-    {
-        return $this->input;
-    }
-
-    public function setOutput(OutputInterface $output)
-    {
-        $this->output = $output;
-
-        return $this;
-    }
-
-    public function getOutput()
-    {
-        return $this->output;
-    }
-
-    public function setType(Type $type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    public function getType()
-    {
-        return $this->type;
-    }
-
+    /**
+     * Get name
+     *
+     * @return string
+     */
     public function getName()
     {
-        return get_class($this);
+        $refl = new \ReflectionClass($this);
+
+        return $refl->getShortName();
     }
 
-    public function getCreatedAt()
+    /**
+     * Set bridge
+     * 
+     * @param  BridgeInterface $bridge
+     * @return self
+     */
+    public function setBridge(BridgeInterface $bridge = null)
     {
-        $str = str_replace('M', '', get_class($this));
+        $this->bridge = $bridge;
 
-        return \DateTime::createFromFormat('Ymd\THis', $str);
+        return $this;
+    }
+
+    /**
+     * Get bridge
+     * 
+     * @return BridgeInterface
+     */
+    public function getBridge()
+    {
+        return $this->bridge;
     }
 }
