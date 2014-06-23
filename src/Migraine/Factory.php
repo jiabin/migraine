@@ -97,7 +97,8 @@ class Factory
             '%name%'    => $name,
             '%version%' => $version,
             '%date%'    => date('c'),
-            '%user%'    => get_current_user()
+            '%user%'    => get_current_user(),
+            '%types%'   => implode(', ', array_keys($this->configuration->get('types')))
         ));
 
         $file = sprintf('%s/%s.%s', realpath($this->configuration->get('migrations_path')), $class, self::EXTENSION);

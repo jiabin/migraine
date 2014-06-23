@@ -30,7 +30,7 @@ class %class% extends Migration
      */
     public function getType()
     {
-        // Can be one of: file, mongo, redis
+        // Can be one of: %types%
         return 'file';
     }
 
