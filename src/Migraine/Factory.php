@@ -89,7 +89,7 @@ class Factory
     public function create($name)
     {
         $slug     = preg_replace('/\W+/', '_', ucwords(strtolower(strip_tags($name))));
-        $version  = $this->getVersion() + 1;
+        $version  = $this->getMigrations()->last() ? $this->getMigrations()->last()->getVersion() + 1 : 1;
         $class    = sprintf('%s%s_%s', self::PREFIX, str_pad($version, $this->configuration->get('pad_length'), '0', STR_PAD_LEFT), $slug);
         $skeleton = file_get_contents(sprintf('%s/../../res/migration.skeleton', __DIR__));
         $contents = strtr($skeleton, array(
