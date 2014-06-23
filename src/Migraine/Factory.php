@@ -54,26 +54,26 @@ class Factory
      */
     public function initialize()
     {
-        $migrations = new ArrayCollection();
-        $types    = new ArrayCollection();
-
         // Find migrations
-        $finder = new Finder();
-        $finder->files()->name(sprintf('/%s([0-9]+)_[a-zA-Z0-9_]+\.%s$/', self::PREFIX, self::EXTENSION))->in($this->configuration->get('migrations_path'));
-        foreach ($finder as $file) {
-            $migration = $this->getInstance($file);
-            $migrations->set($migration->getVersion(), $migration);
+        $this->migrations = new ArrayCollection();
+        if (is_dir($this->configuration->get('migrations_path'))) {
+            $finder = new Finder();
+            $finder->files()->name(sprintf('/%s([0-9]+)_[a-zA-Z0-9_]+\.%s$/', self::PREFIX, self::EXTENSION))->in($this->configuration->get('migrations_path'));
+            foreach ($finder as $file) {
+                $migration = $this->getInstance($file);
+                $this->migrations->set($migration->getVersion(), $migration);
+            }
         }
-        $this->migrations = $migrations;
 
         // Initialize types
-        foreach ($this->configuration->get('types') as $key => $val) {
+        $this->types = new ArrayCollection();
+        $types = $this->configuration->get('types') ?: array();
+        foreach ($types as $key => $val) {
             $class  = sprintf('Migraine\Type\%sType', ucfirst($key));
             $type = new $class($val);
             $type->initialize();
-            $types->set($key, $type);    
+            $this->types->set($key, $type);    
         }
-        $this->types = $types;
     }
 
     /**
