@@ -52,8 +52,8 @@ class SelfUpdateCommand extends Command
             return $output->writeln('<error>Unable to search for updates</error>');
         }
 
-        $currentVersion = $this->getApplication()->getVersion();
-        $allowMajor = $input->getOption('major');
+        $currentVersion = trim($this->getApplication()->getVersion(), 'v');
+        $allowMajor     = $input->getOption('major');
 
         if ($manager->update($currentVersion, $allowMajor)) {
             $output->writeln('<info>Updated to latest version</info>');
