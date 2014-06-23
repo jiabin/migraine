@@ -69,7 +69,7 @@ class StatusCommand extends FactoryAwareCommand
         }
 
         if ($factory->hasNextMigration()) {
-            $string = sprintf('* Current version is <options=bold>%s</options=bold>, behind by <options=bold>%s</options=bold> migrations.', $factory->getVersion(), $awaiting);
+            $string = sprintf('* Current version is %s, behind by %s migrations.', $factory->getVersion(), $awaiting);
         } else {
             $string = '* You are on latest version.';
         }
@@ -82,7 +82,7 @@ class StatusCommand extends FactoryAwareCommand
             } 
         }
         if ($lastUpdatedAt) {
-            $output->writeln(sprintf('* Last update was at <options=bold>%s</options=bold>.', $lastUpdatedAt->format('Y-m-d H:i:s P')));
+            $output->writeln(sprintf('* Last update was at %s', $lastUpdatedAt->format('c')));
         }
     }
 }
