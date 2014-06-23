@@ -28,5 +28,11 @@
         "sha1": "3702148f5fe4b2e5be6dd02aee8379aa8b1dd004",
         "url": "http:\/\/jiabin.github.io\/migraine\/downloads\/migraine-0.0.4.phar",
         "version": "0.0.4"
+    },
+    {
+        "name": "migraine.phar",
+        "sha1": "a122e082fdfc6670b5920196cf9a9c6e3dc5b0b6",
+        "url": "http:\/\/jiabin.github.io\/migraine\/downloads\/migraine-0.1.0.phar",
+        "version": "0.1.0"
     }
 ]
