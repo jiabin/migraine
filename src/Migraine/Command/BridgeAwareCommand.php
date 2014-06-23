@@ -11,8 +11,6 @@
 
 namespace Migraine\Command;
 
-use Symfony\Component\Console\Input\InputOption;
-
 /**
  * Bridge aware command
  */
